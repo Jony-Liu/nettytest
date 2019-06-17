@@ -1,4 +1,4 @@
-package example.iotest;
+package com.example.iotest;
 
 import java.io.IOException;
 import java.io.InputStream;

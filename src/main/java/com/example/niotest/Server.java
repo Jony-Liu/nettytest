@@ -1,4 +1,4 @@
-package example.niotest;
+package com.example.niotest;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
