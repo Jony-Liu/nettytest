@@ -1,2 +1,3 @@
 # nettytest
-my first repository
+Netty is an asynchronous event-driven network application framework 
+for rapid development of maintainable high performance protocol servers & clients.
