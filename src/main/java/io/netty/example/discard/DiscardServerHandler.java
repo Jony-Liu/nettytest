@@ -13,7 +13,7 @@ import java.io.UnsupportedEncodingException;
 public class DiscardServerHandler extends ChannelInboundHandlerAdapter { // (1)
 
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws UnsupportedEncodingException { // (2)
+    public void channelRead(ChannelHandlerContext ctx, Object msg) { // (2)
         //Looking into the Received Data
         ByteBuf in = (ByteBuf) msg;
         try {
