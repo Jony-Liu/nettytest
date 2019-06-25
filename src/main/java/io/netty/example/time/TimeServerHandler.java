@@ -10,19 +10,19 @@ public class TimeServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelActive(final ChannelHandlerContext ctx) { // (1)
-        final ByteBuf time = ctx.alloc().buffer(4); // (2)
-        time.writeInt((int) (System.currentTimeMillis() / 1000L + 2208988800L));
-
-        final ChannelFuture f = ctx.writeAndFlush(time); // (3)
-        f.addListener(new ChannelFutureListener() {
-            @Override
-            public void operationComplete(ChannelFuture future) {
-                assert f == future;
-                ctx.close();
-            }
-        }); // (4)
-//        ChannelFuture f = ctx.writeAndFlush(new UnixTime());
-//        f.addListener(ChannelFutureListener.CLOSE);
+//        final ByteBuf time = ctx.alloc().buffer(4); // (2)
+//        time.writeInt((int) (System.currentTimeMillis() / 1000L + 2208988800L));
+//
+//        final ChannelFuture f = ctx.writeAndFlush(time); // (3)
+//        f.addListener(new ChannelFutureListener() {
+//            @Override
+//            public void operationComplete(ChannelFuture future) {
+//                assert f == future;
+//                ctx.close();
+//            }
+//        }); // (4)
+        ChannelFuture f = ctx.writeAndFlush(new UnixTime());
+        f.addListener(ChannelFutureListener.CLOSE);
     }
 
     @Override
