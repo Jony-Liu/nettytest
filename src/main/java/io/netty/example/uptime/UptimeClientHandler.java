@@ -60,19 +60,19 @@ public class UptimeClientHandler extends SimpleChannelInboundHandler<Object> {
     }
 
     @Override
-    public void channelInactive(final ChannelHandlerContext ctx) {
+    public void channelInactive(final ChannelHandlerContext ctx) {//链接中断时，函数执行
         println("Disconnected from: " + ctx.channel().remoteAddress());
     }
 
     @Override
-    public void channelUnregistered(final ChannelHandlerContext ctx) throws Exception {
+    public void channelUnregistered(final ChannelHandlerContext ctx) throws Exception {//注销channel时，函数执行
         println("Sleeping for: " + UptimeClient.RECONNECT_DELAY + 's');
 
         ctx.channel().eventLoop().schedule(new Runnable() {
             @Override
             public void run() {
                 println("Reconnecting to: " + UptimeClient.HOST + ':' + UptimeClient.PORT);
-                UptimeClient.connect();
+                UptimeClient.connect();//重新连接服务端
             }
         }, UptimeClient.RECONNECT_DELAY, TimeUnit.SECONDS);
     }

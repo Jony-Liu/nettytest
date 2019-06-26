@@ -23,7 +23,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
 public class UptimeServerHandler extends SimpleChannelInboundHandler<Object> {
     @Override
     public void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
-        // discard
+        // discard 不发送任何数据,引起客户端读取读取超时(read timeout)
     }
 
     @Override

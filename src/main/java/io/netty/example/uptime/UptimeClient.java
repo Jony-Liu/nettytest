@@ -51,7 +51,9 @@ public final class UptimeClient {
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
-                        ch.pipeline().addLast(new IdleStateHandler(READ_TIMEOUT, 0, 0), handler);
+                        //添加 IdleStateHandler()，当通道有一段时间没有执行读、写或
+                        //两种操作时，触发IdleStateEvent。
+                         ch.pipeline().addLast(new IdleStateHandler(READ_TIMEOUT, 0, 0), handler);
                     }
                 });
         bs.connect();
