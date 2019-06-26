@@ -1,18 +1,3 @@
-/*
- * Copyright 2012 The Netty Project
- *
- * The Netty Project licenses this file to you under the Apache License,
- * version 2.0 (the "License"); you may not use this file except in compliance
- * with the License. You may obtain a copy of the License at:
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations
- * under the License.
- */
 package io.netty.example.telnet;
 
 import io.netty.channel.ChannelFuture;
@@ -30,6 +15,7 @@ import java.util.Date;
 @Sharable
 public class TelnetServerHandler extends SimpleChannelInboundHandler<String> {
 
+    //客户端第一次连接服务端时，函数执行
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         // Send greeting for a new connection.
@@ -39,7 +25,7 @@ public class TelnetServerHandler extends SimpleChannelInboundHandler<String> {
     }
 
     @Override
-    public void channelRead0(ChannelHandlerContext ctx, String request) throws Exception {
+    public void channelRead0(ChannelHandlerContext ctx, String request){
         // Generate and write a response.
         String response;
         boolean close = false;
