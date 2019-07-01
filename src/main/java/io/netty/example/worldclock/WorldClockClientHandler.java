@@ -60,6 +60,7 @@ public class WorldClockClientHandler extends SimpleChannelInboundHandler<LocalTi
         boolean interrupted = false;
         for (;;) {
             try {
+                //下一步调用 channelRead0（）获取世界时间
                 localTimes = answer.take();
                 break;
             } catch (InterruptedException ignore) {
@@ -92,10 +93,10 @@ public class WorldClockClientHandler extends SimpleChannelInboundHandler<LocalTi
     public void channelRegistered(ChannelHandlerContext ctx) {
         channel = ctx.channel();
     }
-
+    //从
     @Override
     public void channelRead0(ChannelHandlerContext ctx, LocalTimes times) throws Exception {
-        answer.add(times);
+        answer.add(times);//读取服务端返回的世界时间
     }
 
     @Override

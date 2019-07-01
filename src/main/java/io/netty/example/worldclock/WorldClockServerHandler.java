@@ -33,7 +33,7 @@ public class WorldClockServerHandler extends SimpleChannelInboundHandler<Locatio
 
     @Override
     public void channelRead0(ChannelHandlerContext ctx, Locations locations) throws Exception {
-        long currentTime = System.currentTimeMillis();
+        long currentTime = System.currentTimeMillis();//获取当前时间戳
 
         LocalTimes.Builder builder = LocalTimes.newBuilder();
         for (Location l: locations.getLocationList()) {

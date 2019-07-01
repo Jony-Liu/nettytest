@@ -36,6 +36,7 @@ public final class WorldClockClient {
     static final boolean SSL = System.getProperty("ssl") != null;
     static final String HOST = System.getProperty("host", "127.0.0.1");
     static final int PORT = Integer.parseInt(System.getProperty("port", "8463"));
+    //世界各地不同地区的标识符
     static final List<String> CITIES = Arrays.asList(System.getProperty(
             "cities", "Asia/Seoul,Europe/Berlin,America/Los_Angeles").split(","));
 
