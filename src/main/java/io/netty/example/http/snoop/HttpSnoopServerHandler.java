@@ -73,7 +73,7 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
             buf.append("HOSTNAME: ").append(request.headers().get(HttpHeaderNames.HOST, "unknown")).append("\r\n");
             buf.append("REQUEST_URI: ").append(request.uri()).append("\r\n\r\n");
 
-            HttpHeaders headers = request.headers();
+            HttpHeaders headers = request.headers();//获取http header信息
             if (!headers.isEmpty()) {
                 for (Entry<String, String> h: headers) {
                     CharSequence key = h.getKey();
@@ -82,7 +82,7 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
                 }
                 buf.append("\r\n");
             }
-
+            //解析url请求行信息
             QueryStringDecoder queryStringDecoder = new QueryStringDecoder(request.uri());
             Map<String, List<String>> params = queryStringDecoder.parameters();
             if (!params.isEmpty()) {
@@ -95,13 +95,13 @@ public class HttpSnoopServerHandler extends SimpleChannelInboundHandler<Object> 
                 }
                 buf.append("\r\n");
             }
-
+            //判断请求状态
             appendDecoderResult(buf, request);
         }
 
         if (msg instanceof HttpContent) {
             HttpContent httpContent = (HttpContent) msg;
-
+            //获取请求体
             ByteBuf content = httpContent.content();
             if (content.isReadable()) {
                 buf.append("CONTENT: ");
