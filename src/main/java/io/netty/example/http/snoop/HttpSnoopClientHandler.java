@@ -30,7 +30,7 @@ public class HttpSnoopClientHandler extends SimpleChannelInboundHandler<HttpObje
     public void channelRead0(ChannelHandlerContext ctx, HttpObject msg) {
         if (msg instanceof HttpResponse) {
             HttpResponse response = (HttpResponse) msg;
-
+            //打印出返回报文请求状态
             System.err.println("STATUS: " + response.status());
             System.err.println("VERSION: " + response.protocolVersion());
             System.err.println();

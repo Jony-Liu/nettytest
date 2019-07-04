@@ -82,6 +82,7 @@ public final class HttpSnoopClient {
             Channel ch = b.connect(host, port).sync().channel();
 
             // Prepare the HTTP request.
+            //新建一个http请求,设置http 协议相关信息
             HttpRequest request = new DefaultFullHttpRequest(
                     HttpVersion.HTTP_1_1, HttpMethod.GET, uri.getRawPath());
             request.headers().set(HttpHeaderNames.HOST, host);

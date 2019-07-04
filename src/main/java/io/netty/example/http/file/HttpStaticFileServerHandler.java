@@ -127,7 +127,7 @@ public class HttpStaticFileServerHandler extends SimpleChannelInboundHandler<Ful
 
         final boolean keepAlive = HttpUtil.isKeepAlive(request);
         final String uri = request.uri();
-        final String path = sanitizeUri(uri);
+        final String path = sanitizeUri(uri);//将uri映射到本地磁盘目录
         if (path == null) {
             this.sendError(ctx, FORBIDDEN);
             return;
@@ -193,6 +193,7 @@ public class HttpStaticFileServerHandler extends SimpleChannelInboundHandler<Ful
         ctx.write(response);
 
         // Write the content.
+        //正式将文件内容写入ctx中
         ChannelFuture sendFileFuture;
         ChannelFuture lastContentFuture;
         if (ctx.pipeline().get(SslHandler.class) == null) {
@@ -266,6 +267,7 @@ public class HttpStaticFileServerHandler extends SimpleChannelInboundHandler<Ful
         }
 
         // Convert to absolute path.
+        //获取当前项目根路径
         return SystemPropertyUtil.get("user.dir") + File.separator + uri;
     }
 
