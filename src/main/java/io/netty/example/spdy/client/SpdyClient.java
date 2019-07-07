@@ -56,17 +56,17 @@ public final class SpdyClient {
 
     public static void main(String[] args) throws Exception {
         // Configure SSL.
-        final SslContext sslCtx = SslContextBuilder.forClient()
-            .trustManager(InsecureTrustManagerFactory.INSTANCE)
-            .applicationProtocolConfig(new ApplicationProtocolConfig(
-                        Protocol.NPN,
-                        // NO_ADVERTISE is currently the only mode supported by both OpenSsl and JDK providers.
-                        SelectorFailureBehavior.NO_ADVERTISE,
-                        // ACCEPT is currently the only mode supported by both OpenSsl and JDK providers.
-                        SelectedListenerFailureBehavior.ACCEPT,
-                        ApplicationProtocolNames.SPDY_3_1,
-                        ApplicationProtocolNames.HTTP_1_1))
-            .build();
+//        final SslContext sslCtx = SslContextBuilder.forClient()
+//            .trustManager(InsecureTrustManagerFactory.INSTANCE)
+//            .applicationProtocolConfig(new ApplicationProtocolConfig(
+//                        Protocol.NPN,
+//                        // NO_ADVERTISE is currently the only mode supported by both OpenSsl and JDK providers.
+//                        SelectorFailureBehavior.NO_ADVERTISE,
+//                        // ACCEPT is currently the only mode supported by both OpenSsl and JDK providers.
+//                        SelectedListenerFailureBehavior.ACCEPT,
+//                        ApplicationProtocolNames.SPDY_3_1,
+//                        ApplicationProtocolNames.HTTP_1_1))
+//            .build();
 
         HttpResponseClientHandler httpResponseHandler = new HttpResponseClientHandler();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
@@ -77,7 +77,7 @@ public final class SpdyClient {
             b.channel(NioSocketChannel.class);
             b.option(ChannelOption.SO_KEEPALIVE, true);
             b.remoteAddress(HOST, PORT);
-            b.handler(new SpdyClientInitializer(sslCtx, httpResponseHandler));
+            b.handler(new SpdyClientInitializer( httpResponseHandler));
 
             // Start the client.
             Channel channel = b.connect().syncUninterruptibly().channel();

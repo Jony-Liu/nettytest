@@ -56,17 +56,17 @@ public final class SpdyServer {
 
     public static void main(String[] args) throws Exception {
         // Configure SSL.
-        SelfSignedCertificate ssc = new SelfSignedCertificate();
-        SslContext sslCtx = SslContextBuilder.forServer(ssc.certificate(), ssc.privateKey())
-            .applicationProtocolConfig(new ApplicationProtocolConfig(
-                        Protocol.NPN,
-                        // NO_ADVERTISE is currently the only mode supported by both OpenSsl and JDK providers.
-                        SelectorFailureBehavior.NO_ADVERTISE,
-                        // ACCEPT is currently the only mode supported by both OpenSsl and JDK providers.
-                        SelectedListenerFailureBehavior.ACCEPT,
-                        ApplicationProtocolNames.SPDY_3_1,
-                        ApplicationProtocolNames.HTTP_1_1))
-            .build();
+        //SelfSignedCertificate ssc = new SelfSignedCertificate();
+//        SslContext sslCtx = SslContextBuilder.forServer(ssc.certificate(), ssc.privateKey())
+//            .applicationProtocolConfig(new ApplicationProtocolConfig(//应用程序协议协商配置
+//                        Protocol.NPN,
+//                        // NO_ADVERTISE is currently the only mode supported by both OpenSsl and JDK providers.
+//                        SelectorFailureBehavior.NO_ADVERTISE,
+//                        // ACCEPT is currently the only mode supported by both OpenSsl and JDK providers.
+//                        SelectedListenerFailureBehavior.ACCEPT,
+//                        ApplicationProtocolNames.SPDY_3_1,//配置Google SPDY协议
+//                        ApplicationProtocolNames.HTTP_1_1))//配置Http 1.1协议
+//            .build();
 
         // Configure the server.
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
@@ -77,7 +77,7 @@ public final class SpdyServer {
             b.group(bossGroup, workerGroup)
              .channel(NioServerSocketChannel.class)
              .handler(new LoggingHandler(LogLevel.INFO))
-             .childHandler(new SpdyServerInitializer(sslCtx));
+             .childHandler(new SpdyServerInitializer());
 
             Channel ch = b.bind(PORT).sync().channel();
 

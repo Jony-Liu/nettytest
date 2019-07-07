@@ -31,18 +31,18 @@ public class SpdyClientInitializer extends ChannelInitializer<SocketChannel> {
 
     private static final int MAX_SPDY_CONTENT_LENGTH = 1024 * 1024; // 1 MB
 
-    private final SslContext sslCtx;
+//    private final SslContext sslCtx;
     private final HttpResponseClientHandler httpResponseHandler;
 
-    public SpdyClientInitializer(SslContext sslCtx, HttpResponseClientHandler httpResponseHandler) {
-        this.sslCtx = sslCtx;
+    public SpdyClientInitializer( HttpResponseClientHandler httpResponseHandler) {
+//        this.sslCtx = sslCtx;
         this.httpResponseHandler = httpResponseHandler;
     }
 
     @Override
     public void initChannel(SocketChannel ch) {
         ChannelPipeline pipeline = ch.pipeline();
-        pipeline.addLast("ssl", sslCtx.newHandler(ch.alloc()));
+//        pipeline.addLast("ssl", sslCtx.newHandler(ch.alloc()));
         pipeline.addLast("spdyFrameCodec", new SpdyFrameCodec(SPDY_3_1));
         pipeline.addLast("spdyFrameLogger", new SpdyFrameLogger(INFO));
         pipeline.addLast("spdySessionHandler", new SpdySessionHandler(SPDY_3_1, false));

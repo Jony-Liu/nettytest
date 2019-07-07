@@ -24,6 +24,13 @@
             <artifactId>protobuf-java</artifactId>
             <version>3.6.1</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.eclipse.jetty.npn/npn-api -->
+        <dependency>
+            <groupId>org.eclipse.jetty.npn</groupId>
+            <artifactId>npn-api</artifactId>
+            <version>8.1.2.v20120308</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
 </project>
