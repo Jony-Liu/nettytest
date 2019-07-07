@@ -42,12 +42,12 @@ public class SpdyOrHttpHandler extends ApplicationProtocolNegotiationHandler {
 
     @Override
     protected void configurePipeline(ChannelHandlerContext ctx, String protocol) throws Exception {
-        if (ApplicationProtocolNames.SPDY_3_1.equals(protocol)) {
+        if (ApplicationProtocolNames.SPDY_3_1.equals(protocol)) {//配置SPDY 3.1协议 pipeline
             configureSpdy(ctx, SpdyVersion.SPDY_3_1);
             return;
         }
 
-        if (ApplicationProtocolNames.HTTP_1_1.equals(protocol)) {
+        if (ApplicationProtocolNames.HTTP_1_1.equals(protocol)) {//配置Http 1.1协议 pipeline
             configureHttp1(ctx);
             return;
         }
