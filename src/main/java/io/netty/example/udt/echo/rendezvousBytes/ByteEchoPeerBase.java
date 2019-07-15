@@ -49,6 +49,7 @@ public class ByteEchoPeerBase {
         this.peerAddress = peerAddress;
     }
 
+    @Deprecated
     public void run() throws Exception {
         final ThreadFactory connectFactory = new DefaultThreadFactory("rendezvous");
         final NioEventLoopGroup connectGroup = new NioEventLoopGroup(1,

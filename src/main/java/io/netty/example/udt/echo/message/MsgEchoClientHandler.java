@@ -29,6 +29,7 @@ import io.netty.channel.udt.nio.NioUdtProvider;
  */
 public class MsgEchoClientHandler extends SimpleChannelInboundHandler<UdtMessage> {
 
+    @Deprecated
     private final UdtMessage message;
 
     @Deprecated
