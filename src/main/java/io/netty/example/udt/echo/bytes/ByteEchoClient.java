@@ -41,6 +41,7 @@ public final class ByteEchoClient {
     static final int PORT = Integer.parseInt(System.getProperty("port", "8007"));
     static final int SIZE = Integer.parseInt(System.getProperty("size", "256"));
 
+    @Deprecated
     public static void main(String[] args) throws Exception {
         // Configure the client.
         final ThreadFactory connectFactory = new DefaultThreadFactory("connect");

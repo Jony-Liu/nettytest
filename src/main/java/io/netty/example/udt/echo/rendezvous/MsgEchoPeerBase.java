@@ -46,6 +46,7 @@ public abstract class MsgEchoPeerBase {
         this.peer = peer;
     }
 
+    @Deprecated
     public void run() throws Exception {
         // Configure the peer.
         final ThreadFactory connectFactory = new DefaultThreadFactory("rendezvous");

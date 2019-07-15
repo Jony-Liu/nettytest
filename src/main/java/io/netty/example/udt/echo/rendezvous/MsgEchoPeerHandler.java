@@ -29,8 +29,10 @@ import io.netty.channel.udt.nio.NioUdtProvider;
  */
 public class MsgEchoPeerHandler extends SimpleChannelInboundHandler<UdtMessage> {
 
+    @Deprecated
     private final UdtMessage message;
 
+    @Deprecated
     public MsgEchoPeerHandler(final int messageSize) {
         super(false);
         final ByteBuf byteBuf = Unpooled.buffer(messageSize);
@@ -41,12 +43,14 @@ public class MsgEchoPeerHandler extends SimpleChannelInboundHandler<UdtMessage> 
     }
 
     @Override
+    @Deprecated
     public void channelActive(final ChannelHandlerContext ctx) {
         System.err.println("ECHO active " + NioUdtProvider.socketUDT(ctx.channel()).toStringOptions());
         ctx.writeAndFlush(message);
     }
 
     @Override
+    @Deprecated
     public void channelRead0(ChannelHandlerContext ctx, UdtMessage message) {
         ctx.write(message);
     }
