@@ -42,15 +42,15 @@ public final class MsgEchoServer {
         final ThreadFactory acceptFactory = new DefaultThreadFactory("accept");
         final ThreadFactory connectFactory = new DefaultThreadFactory("connect");
         final NioEventLoopGroup acceptGroup =
-                new NioEventLoopGroup(1, acceptFactory, NioUdtProvider.MESSAGE_PROVIDER);
+                new NioEventLoopGroup(1, acceptFactory, NioUdtProvider.MESSAGE_PROVIDER);//add message provider
         final NioEventLoopGroup connectGroup =
-                new NioEventLoopGroup(1, connectFactory, NioUdtProvider.MESSAGE_PROVIDER);
+                new NioEventLoopGroup(1, connectFactory, NioUdtProvider.MESSAGE_PROVIDER);//add message provider
 
         // Configure the server.
         try {
             final ServerBootstrap boot = new ServerBootstrap();
             boot.group(acceptGroup, connectGroup)
-                    .channelFactory(NioUdtProvider.MESSAGE_ACCEPTOR)
+                    .channelFactory(NioUdtProvider.MESSAGE_ACCEPTOR)//add message acceptor
                     .option(ChannelOption.SO_BACKLOG, 10)
                     .handler(new LoggingHandler(LogLevel.INFO))
                     .childHandler(new ChannelInitializer<UdtChannel>() {

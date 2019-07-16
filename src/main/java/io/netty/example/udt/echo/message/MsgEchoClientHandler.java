@@ -30,10 +30,10 @@ import io.netty.channel.udt.nio.NioUdtProvider;
 public class MsgEchoClientHandler extends SimpleChannelInboundHandler<UdtMessage> {
 
     @Deprecated
-    private final UdtMessage message;
+    private final UdtMessage message;//使用 UdtMessage 代替 ByteBuf
 
     @Deprecated
-    public MsgEchoClientHandler() {
+    public MsgEchoClientHandler() {//initializing message
         super(false);
         final ByteBuf byteBuf = Unpooled.buffer(MsgEchoClient.SIZE);
         for (int i = 0; i < byteBuf.capacity(); i++) {

@@ -50,7 +50,7 @@ public final class ByteEchoClient {
         try {
             final Bootstrap boot = new Bootstrap();
             boot.group(connectGroup)
-                    .channelFactory(NioUdtProvider.BYTE_CONNECTOR)
+                    .channelFactory(NioUdtProvider.BYTE_CONNECTOR)//设置 Udt byte connector
                     .handler(new ChannelInitializer<UdtChannel>() {
                         @Override
                         public void initChannel(final UdtChannel ch)
