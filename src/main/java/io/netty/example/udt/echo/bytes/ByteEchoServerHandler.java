@@ -29,7 +29,7 @@ public class ByteEchoServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     @Deprecated
     public void channelActive(final ChannelHandlerContext ctx) {
-        System.err.println("ECHO active " + NioUdtProvider.socketUDT(ctx.channel()));
+        System.err.println("ECHO active " + NioUdtProvider.socketUDT(ctx.channel()));//打印客户端 服务端 ip : port
     }
 
     @Override

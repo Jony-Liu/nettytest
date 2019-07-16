@@ -50,11 +50,11 @@ public final class MsgEchoClient {
         // Configure the client.
         final ThreadFactory connectFactory = new DefaultThreadFactory("connect");
         final NioEventLoopGroup connectGroup = new NioEventLoopGroup(1,
-                connectFactory, NioUdtProvider.MESSAGE_PROVIDER);
+                connectFactory, NioUdtProvider.MESSAGE_PROVIDER);//add message provider
         try {
             final Bootstrap boot = new Bootstrap();
             boot.group(connectGroup)
-                    .channelFactory(NioUdtProvider.MESSAGE_CONNECTOR)
+                    .channelFactory(NioUdtProvider.MESSAGE_CONNECTOR)//add message conncetor
                     .handler(new ChannelInitializer<UdtChannel>() {
                         @Override
                         public void initChannel(final UdtChannel ch)
