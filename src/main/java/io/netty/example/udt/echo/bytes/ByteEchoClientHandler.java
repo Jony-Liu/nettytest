@@ -33,7 +33,7 @@ public class ByteEchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> 
     public ByteEchoClientHandler() {
         super(false);
 
-        message = Unpooled.buffer(ByteEchoClient.SIZE);
+        message = Unpooled.buffer(ByteEchoClient.SIZE);//初始化message
         for (int i = 0; i < message.capacity(); i++) {
             message.writeByte((byte) i);
         }
@@ -43,8 +43,8 @@ public class ByteEchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> 
     @Override
     @Deprecated
     public void channelActive(final ChannelHandlerContext ctx) {
-        System.err.println("ECHO active " + NioUdtProvider.socketUDT(ctx.channel()));
-        ctx.writeAndFlush(message);
+        System.err.println("ECHO active " + NioUdtProvider.socketUDT(ctx.channel()));//打印客户端和服务端的 ip ：port
+        ctx.writeAndFlush(message);//启动时触发
     }
 
     @Override

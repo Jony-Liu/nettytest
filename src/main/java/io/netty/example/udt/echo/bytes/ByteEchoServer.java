@@ -38,16 +38,16 @@ public final class ByteEchoServer {
 
     @Deprecated
     public static void main(String[] args) throws Exception {
-        final ThreadFactory acceptFactory = new DefaultThreadFactory("accept");
-        final ThreadFactory connectFactory = new DefaultThreadFactory("connect");
+        final ThreadFactory acceptFactory = new DefaultThreadFactory("accept");//接受请求线程池
+        final ThreadFactory connectFactory = new DefaultThreadFactory("connect");//链接请求线程池
         final NioEventLoopGroup acceptGroup = new NioEventLoopGroup(1, acceptFactory, NioUdtProvider.BYTE_PROVIDER);
         final NioEventLoopGroup connectGroup = new NioEventLoopGroup(1, connectFactory, NioUdtProvider.BYTE_PROVIDER);
         // Configure the server.
         try {
             final ServerBootstrap boot = new ServerBootstrap();
             boot.group(acceptGroup, connectGroup)
-                    .channelFactory(NioUdtProvider.BYTE_ACCEPTOR)
-                    .option(ChannelOption.SO_BACKLOG, 10)
+                    .channelFactory(NioUdtProvider.BYTE_ACCEPTOR)//设置Udt acceptor
+                    .option(ChannelOption.SO_BACKLOG, 10)//
                     .handler(new LoggingHandler(LogLevel.INFO))
                     .childHandler(new ChannelInitializer<UdtChannel>() {
                         @Override

@@ -46,7 +46,7 @@ public final class ByteEchoClient {
         // Configure the client.
         final ThreadFactory connectFactory = new DefaultThreadFactory("connect");
         final NioEventLoopGroup connectGroup = new NioEventLoopGroup(1,
-                connectFactory, NioUdtProvider.BYTE_PROVIDER);
+                connectFactory, NioUdtProvider.BYTE_PROVIDER);//设置Udt provider
         try {
             final Bootstrap boot = new Bootstrap();
             boot.group(connectGroup)
