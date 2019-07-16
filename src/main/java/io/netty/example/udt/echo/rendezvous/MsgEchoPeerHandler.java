@@ -33,7 +33,7 @@ public class MsgEchoPeerHandler extends SimpleChannelInboundHandler<UdtMessage> 
     private final UdtMessage message;
 
     @Deprecated
-    public MsgEchoPeerHandler(final int messageSize) {
+    public MsgEchoPeerHandler(final int messageSize) {//initializing message
         super(false);
         final ByteBuf byteBuf = Unpooled.buffer(messageSize);
         for (int i = 0; i < byteBuf.capacity(); i++) {

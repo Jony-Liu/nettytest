@@ -51,7 +51,7 @@ public abstract class MsgEchoPeerBase {
         // Configure the peer.
         final ThreadFactory connectFactory = new DefaultThreadFactory("rendezvous");
         final NioEventLoopGroup connectGroup = new NioEventLoopGroup(1,
-                connectFactory, NioUdtProvider.MESSAGE_PROVIDER);
+                connectFactory, NioUdtProvider.MESSAGE_PROVIDER);//add message provider
         try {
             final Bootstrap boot = new Bootstrap();
             boot.group(connectGroup)
