@@ -41,7 +41,7 @@ public class ByteEchoPeerHandler extends SimpleChannelInboundHandler<ByteBuf> {
     @Override
     @Deprecated
     public void channelActive(ChannelHandlerContext ctx) {
-        System.err.println("ECHO active " + NioUdtProvider.socketUDT(ctx.channel()).toStringOptions());
+        System.err.println("ECHO active " + NioUdtProvider.socketUDT(ctx.channel()).toStringOptions());//打印所有socket 嵌套字选项
         ctx.writeAndFlush(message);
     }
 

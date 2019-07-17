@@ -50,10 +50,10 @@ public class ByteEchoPeerBase {
     }
 
     @Deprecated
-    public void run() throws Exception {
+    public void run() throws Exception {//new a rendezvous factory in order to get NioEventLoopGroup
         final ThreadFactory connectFactory = new DefaultThreadFactory("rendezvous");
         final NioEventLoopGroup connectGroup = new NioEventLoopGroup(1,
-                connectFactory, NioUdtProvider.BYTE_PROVIDER);
+                connectFactory, NioUdtProvider.BYTE_PROVIDER);//add rendezvous byt e provider
         try {
             final Bootstrap bootstrap = new Bootstrap();
             bootstrap.group(connectGroup)
