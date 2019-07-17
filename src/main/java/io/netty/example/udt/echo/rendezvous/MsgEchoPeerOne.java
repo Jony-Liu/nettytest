@@ -31,6 +31,7 @@ public class MsgEchoPeerOne extends MsgEchoPeerBase {
         super(self, peer, messageSize);
     }
 
+    @Deprecated
     public static void main(final String[] args) throws Exception {
         final int messageSize = 64 * 1024;
         final InetSocketAddress self = SocketUtils.socketAddress(Config.hostOne, Config.portOne);

@@ -38,7 +38,7 @@ public class ByteEchoPeerTwo extends ByteEchoPeerBase {
 
     @Deprecated
     public static void main(String[] args) throws Exception {
-        final int messageSize = 64 * 1024;
+        final int messageSize = 64 * 1024;//messageSize is 64K byte
         final InetSocketAddress myAddress = SocketUtils.socketAddress(Config.hostTwo, Config.portTwo);
         final InetSocketAddress peerAddress = SocketUtils.socketAddress(Config.hostOne, Config.portOne);
         new ByteEchoPeerTwo(messageSize, myAddress, peerAddress).run();
