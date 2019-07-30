@@ -39,13 +39,17 @@ public class Server {
     public Server() throws IOException {
         /**
          * 定义一个socket服务端管道对象
+         * 相当于 Reactor模式结构 - Handle
          */
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
         //设置成非阻塞
         serverSocketChannel.configureBlocking(false);
         //绑定端口
         serverSocketChannel.bind(ADDRESS);
-        //创建一个事件选择器对象
+        /**
+         * 创建一个事件选择器对象
+         * 相当于 Reactor模式结构 - Synchronous Event Demultiplexer
+         */
         selector = Selector.open();
         //注册请求事件（个人理解是将请求事件与管道绑定关系的意思）)
         serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
@@ -55,6 +59,7 @@ public class Server {
     public void listen() throws IOException {
         /**
          * 因为服务器一般都是接收所有的客户端请求的所以这里使用一个死循环
+         * 相当于 Reactor模式结构 - Initiation Dispatcher
          */
         while (true) {
             //查询是否有事件，如果没有将停顿一秒后在执行后续代码
@@ -67,6 +72,9 @@ public class Server {
                 SelectionKey key = iterator.next();
                 //删除已处理的事件，防止重复处理
                 iterator.remove();
+                /**
+                 * 相当于 Reactor模式结构 - Event Handler
+                 */
                 handler(key);
             }
             //清空注册事件
@@ -129,6 +137,11 @@ public class Server {
         client.register(selector,SelectionKey.OP_WRITE);
     }
 
+    /**
+     * 相当于 Reactor模式结构 - Concrete Event Handler
+     * @param key
+     * @throws IOException
+     */
     private void accept(SelectionKey key) throws IOException {
         //获取服务器管道
         ServerSocketChannel server = (ServerSocketChannel) key.channel();
