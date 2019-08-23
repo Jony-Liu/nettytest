@@ -16,6 +16,9 @@ import java.lang.reflect.Proxy;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * @author Jony-Liu
+ */
 public class RpcConsumer {
     private static ExecutorService executor = Executors
             .newFixedThreadPool(Runtime.getRuntime().availableProcessors());
@@ -28,7 +31,8 @@ public class RpcConsumer {
         return Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(), new Class<?>[]{serviceClass}, (proxy, method, args) -> {
             if (client == null) {
                 initClient();
-            }          // 设置参数
+            }
+            // 设置参数
             client.setPara(providerName + args[0]);
             return executor.submit(client).get();
         });

@@ -10,6 +10,9 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 
+/**
+ * @author Jony-Liu 
+ */
 public class NettyServer {
     public static void startServer(String hostName, int port) {
         try {
