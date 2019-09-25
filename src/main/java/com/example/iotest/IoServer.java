@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class IOServer {
+public class IoServer {
     public static void main(String[] args) throws Exception {
 
         ServerSocket serverSocket;
